@@ -1,0 +1,35 @@
+body {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	color: #323f4c;
+	font-size: 13px;
+}
+.container-fluid {
+	width: 100%;
+}
+#feed {
+
+}
+.tweet {
+	padding: 15px;
+	border: 1px solid #dae0e7;
+	border-radius: 3px;
+	margin: 0 0 7px 0;
+	box-shadow: 0 1px 0 #dae0e7;
+}
+.tweet:last-child {
+	margin: 0;
+}
+.timestamp {
+	position: relative;
+	color: #92a5b7;
+	left: 5px;
+	font-size: 12px;
+}
+.message {
+	margin: 0;
+}
+.user-link:hover {
+	text-decoration: none;
+	cursor: pointer;
+}
+
