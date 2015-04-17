@@ -40,6 +40,15 @@ function refreshStream(){
 
 		tweet.appendTo(feed);
 	} // end of for loop
+	$('.tweet').on('click', 'a', function(event){
+          event.stopPropagation();
+          event.preventDefault();
+          var userFeed = $('#user-feed');
+          var user = $(this).text();
+          console.log(user);
+          displayUsersTweets(user);
+          userFeed.slideDown();
+        });
 } // end of refreshStream
 
 displayUsersTweets = function(user){
@@ -56,5 +65,5 @@ displayUsersTweets = function(user){
 
 		tweet.appendTo(userFeed);
 	}
-
+	console.log(userFeed);
 };

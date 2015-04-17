@@ -32,17 +32,8 @@
 
         $('#update-button').on('click', refreshStream);
         
-        $('.link').on('click', function(event){
-          console.log('#update-button event fired');
-          event.stopPropagation();
-          event.preventDefault();
-          var userFeed = $('#user-feed');
-          var user = $(this).text();
-          displayUsersTweets(user);
-          userFeed.slideToggle();
-        });
 
-        $('#close-user-feed').on('click', function(event) {
+        $('#user-feed').on('click', 'a', function(event) {
           console.log('close user tweets event fired');
 
           event.stopPropagation();
