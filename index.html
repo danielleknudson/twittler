@@ -6,6 +6,7 @@
     <script src="jquery.js"></script>
     <script src="jquery-dateFormat.min.js"></script>
     <script src="data_generator.js"></script>
+    <script type="text/javascript" src="helperFunctions.js"></script>
   </head>
   <body>
     <div class="container-fluid">
@@ -14,117 +15,44 @@
       </div>
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6" id="feed"></div>
+        <div class="col-xs-12 col-sm-12 col-md-6" id="user-feed">
+        </div>
       </div>
       
     </div>
     <script>
 
       $(document).ready(function(){
-
+        
         // set up the initial home page
         var $feed = $('#feed');
         $feed.html('');
 
-        var createTweetElement = function(author, timestamp, message){
-          var $tweet = $('<div class="tweet"></div>');
-          author.appendTo($tweet);
-          timestamp.appendTo($tweet);
-          message.appendTo($tweet);
-          return $tweet;
-        };
+        refreshStream();
 
-        var createAuthorElement = function(author) {
-          var $author = $('<a class="user-link" data-user=' + author + '></a>');
-          return $author.text('@' + author)
-        };
+        $('#update-button').on('click', refreshStream);
+        
+        $('.link').on('click', function(event){
+          console.log('#update-button event fired');
+          event.stopPropagation();
+          event.preventDefault();
+          var userFeed = $('#user-feed');
+          var user = $(this).text();
+          displayUsersTweets(user);
+          userFeed.slideToggle();
+        });
 
-        var createTimeStampElement = function(timestamp){
-          var $timestamp = $('<span class="timestamp"></span>');
-          var timestamp = jQuery.format.date(timestamp, "ddd, MMMM d, yyyy");
-          return $timestamp.text(timestamp);
-        };
+        $('#close-user-feed').on('click', function(event) {
+          console.log('close user tweets event fired');
 
-        var createMessageElement = function(message){
-          var $message = $('<p class="message"></p>');
-          return $message.text(message);
-        };
-
-        function updateStream(){
-          console.log(streams.home);
-          console.log("updating stream");
-          var streamLength = $('.tweet').length;
-          var index = streamLength - 1;
-          var allTweetsLength = streams.home.length;
-          
-            for (var i = streamLength; i < streams.home.length; i++){
-              var tweet = streams.home[i];
-
-              // get all pieces of the tweet
-              console.log(tweet.created_at);
-              var $timestamp = createTimeStampElement(tweet.created_at);
-              var $author = createAuthorElement(tweet.user);
-              var $message = createMessageElement(tweet.message);
-              
-              // now create the tweet
-              var $tweet = createTweetElement($author, $timestamp, $message);
-
-              $tweet.prependTo($feed);
-            }
-        }; // end of updateStream()
-
-
-        // append tweets to stream
-        console.log(streams.home);
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-
-          // get all pieces of the tweet
-          var $timestamp = createTimeStampElement(tweet.created_at);
-          var $author = createAuthorElement(tweet.user);
-          var $message = createMessageElement(tweet.message);
-          
-          // now create the tweet
-          var $tweet = createTweetElement($author, $timestamp, $message);
-          
-          $tweet.appendTo($feed);
-          index -= 1;
-        }
-
-        $('#update-button').on('click', updateStream);
-
-        // add event listener to filter user name clicks
-        $('.user-link').on('click', function(event){
-          // get the user for whose tweets must be displayed
-          var $user = $(this).data("user");
-          // clear existing feed
-          $feed.html('');
-
-          // if the user does not have tweet display helpful message
-          if (streams.users[$user].length == 0) {
-            var $message = $('<span>This user does not have any tweets.</span');
-          // else the user does have tweets to display
-          } else {
-            // display tweets reverse chronologically
-            for (var i = streams.users[$user].length - 1; i >= 0; i--) {
-              var tweet = streams.users[$user][i];
-              
-              // get all pieces of the tweet
-              var $timestamp = createTimeStampElement(tweet.created_at);
-              var $author = createAuthorElement(tweet.user);
-              var $message = createMessageElement(tweet.message);
-
-              // now create the tweet
-              var $tweet = createTweetElement($author, $timestamp, $message);
-
-              // append the tweet to the feed
-              $tweet.appendTo($feed);
-            }
-          } // end of if-else
-        }); // end of event listener
-
+          event.stopPropagation();
+          event.preventDefault();
+          var userFeed = $('#user-feed');
+          userFeed.slideToggle();
+        });
+        
       });
-
+      
     </script>
   </body>
 </html>

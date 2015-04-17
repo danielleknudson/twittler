@@ -2,9 +2,14 @@ body {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	color: #323f4c;
 	font-size: 13px;
+	cursor: pointer;
 }
 .container-fluid {
 	width: 100%;
+}
+#user-feed {
+	display: none;
+	border: 1px solid black;
 }
 .tweet {
 	padding: 15px;
