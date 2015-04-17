@@ -6,15 +6,10 @@ body {
 .container-fluid {
 	width: 100%;
 }
-#feed {
-
-}
 .tweet {
 	padding: 15px;
-	border: 1px solid #dae0e7;
 	border-radius: 3px;
 	margin: 0 0 7px 0;
-	box-shadow: 0 1px 0 #dae0e7;
 }
 .tweet:last-child {
 	margin: 0;
@@ -32,4 +27,11 @@ body {
 	text-decoration: none;
 	cursor: pointer;
 }
-
+.button {
+	background: #FF6257;
+	color: #FFFFFF;
+	border: none;
+	border-radius: 3px;
+	padding: 7px;
+	width: 100%;
+}
