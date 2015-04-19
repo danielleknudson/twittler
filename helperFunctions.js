@@ -26,9 +26,14 @@ var createElement = function(type, innerContent, classes, id, data){
 }; // end of createElement
 
 function refreshStream(){
+	console.log('refresh the stream');
 	// clear feed
 	var feed = $('#feed');
-	feed.html('');
+	var refreshButton = $('#refresh-container');
+	feed.html('');	
+
+	feed.append(createElement('a', 'Check for new messages', ['button'], 'update-stream'));
+	feed.append(createElement('h3', 'All messages', ['feed-heading']));
 
 	for (var i = streams.home.length -1; i >= 0; i--){
 		// create tweet to append to stream
@@ -40,21 +45,26 @@ function refreshStream(){
 
 		tweet.appendTo(feed);
 	} // end of for loop
+
 	$('.tweet').on('click', 'a', function(event){
+					console.log('listen for user name click');
           event.stopPropagation();
           event.preventDefault();
           var userFeed = $('#user-feed');
           var user = $(this).text();
-          console.log(user);
           displayUsersTweets(user);
-          userFeed.slideDown();
+          userFeed.addClass('transition');
+          feed.toggleClass('hide');
+          refreshButton.toggleClass('hide');
         });
 } // end of refreshStream
 
 displayUsersTweets = function(user){
 	
 	var userFeed = $('#user-feed');
-	userFeed.html('<a class="link" id="close-user-feed">Hide User\'s Tweets</a>');
+	userFeed.html('');
+	userFeed.append(createElement('a', 'Back to stream', ['link'], 'back-to-stream'));
+	userFeed.append(createElement('h3', user + '\'s messages', ['feed-heading']));
 
 	for (var i = streams.users[user].length - 1; i >= 0 ; i--) {
 		var obj = streams.users[user][i];
@@ -65,5 +75,9 @@ displayUsersTweets = function(user){
 
 		tweet.appendTo(userFeed);
 	}
-	console.log(userFeed);
-};
+	// add event listener to user's name to load new messages for this user
+	$('.tweet').on('click', 'a', function(event) {
+    var user = $(this).text();
+    displayUsersTweets(user);
+  });
+}

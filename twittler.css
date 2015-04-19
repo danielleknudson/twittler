@@ -7,16 +7,42 @@ body {
 .container-fluid {
 	width: 100%;
 }
+
+#top-bar{
+	background: #38669B;
+	padding: 7px;
+	font-size: 18px;
+	color: #FFFFFF;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #2E537D;
+}
+
+.content {
+	margin: 20px 0 0 0;
+}
+
 #user-feed {
 	display: none;
-	border: 1px solid black;
+	transition: all 3s ease;
 }
-.tweet {
-	padding: 15px;
+
+#user-feed.transition {
+	display: block;
+}
+
+.tweet, .feed-heading, #update-stream, #back-to-stream {
+	padding: 15px 7px;
 	border-radius: 3px;
-	margin: 0 0 7px 0;
+	margin: 7px 0 0 0;
 }
 .tweet:last-child {
+	margin: 0 0 15px 0;
+}
+#update-stream, #back-to-stream {
+	color: #EF9426;
+	font-size: 12px;
+}
+.feed-heading {
 	margin: 0;
 }
 .timestamp {
@@ -33,10 +59,13 @@ body {
 	cursor: pointer;
 }
 .button {
-	background: #FF6257;
-	color: #FFFFFF;
+	background: transparent;
+	color: #23527c;
 	border: none;
 	border-radius: 3px;
 	padding: 7px;
 	width: 100%;
+}
+.hide {
+	display:none;
 }

@@ -11,14 +11,16 @@
   <body>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6"><button class="button" id="update-button">Refresh Stream</button></div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6" id="feed"></div>
-        <div class="col-xs-12 col-sm-12 col-md-6" id="user-feed">
+        <div class="col-xs-12" id="top-bar">
+          <span class="logo">Twittler</span>
         </div>
       </div>
-      
+      <div class="content">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12" id="feed"></div>
+          <div class="col-xs-12 col-sm-12 col-md-12" id="user-feed"></div>
+        </div>
+      </div>
     </div>
     <script>
 
@@ -30,16 +32,24 @@
 
         refreshStream();
 
-        $('#update-button').on('click', refreshStream);
+        $('#update-stream').on('click', refreshStream);
+        $('.logo').on('click', refreshStream);
         
 
         $('#user-feed').on('click', 'a', function(event) {
-          console.log('close user tweets event fired');
+          console.log('listen for user tweets close');
 
           event.stopPropagation();
           event.preventDefault();
           var userFeed = $('#user-feed');
-          userFeed.slideToggle();
+          var feed = $('#feed');
+          var refreshButton = $('#refresh-container');
+          userFeed.toggleClass('transition');
+          
+          refreshStream();
+          
+          feed.toggleClass('hide');
+          refreshButton.toggleClass('hide');
         });
         
       });
