@@ -3,25 +3,28 @@
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="twittler.css">
-    <script src="jquery.js"></script>
-    <script src="jquery-dateFormat.min.js"></script>
-    <script src="data_generator.js"></script>
-    <script type="text/javascript" src="helperFunctions.js"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   </head>
   <body>
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12" id="top-bar">
-          <span class="logo">Twittler</span>
+          <span id="home-link">Home</span>
         </div>
       </div>
       <div class="content">
         <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12" id="feed"></div>
-          <div class="col-xs-12 col-sm-12 col-md-12" id="user-feed"></div>
+          <div class="col-xs-12 col-sm-12 col-md-12" id="feed">
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12" id="user-feed">
+          </div>
         </div>
       </div>
     </div>
+    <script src="jquery.js"></script>
+    <script src="jquery-dateFormat.min.js"></script>
+    <script src="data_generator.js"></script>
+    <script type="text/javascript" src="helperFunctions.js"></script>
     <script>
 
       $(document).ready(function(){
@@ -33,7 +36,7 @@
         refreshStream();
 
         $('#update-stream').on('click', refreshStream);
-        $('.logo').on('click', refreshStream);
+        $('#home-link').on('click', refreshStream);
         
 
         $('#user-feed').on('click', 'a', function(event) {
@@ -52,6 +55,7 @@
           refreshButton.toggleClass('hide');
         });
         
+
       });
       
     </script>

@@ -46,6 +46,8 @@ function refreshStream(){
 		tweet.appendTo(feed);
 	} // end of for loop
 
+	$('#home-link').on('click', refreshStream);
+	$('#update-stream').on('click', refreshStream);
 	$('.tweet').on('click', 'a', function(event){
 					console.log('listen for user name click');
           event.stopPropagation();
@@ -75,6 +77,7 @@ displayUsersTweets = function(user){
 
 		tweet.appendTo(userFeed);
 	}
+
 	// add event listener to user's name to load new messages for this user
 	$('.tweet').on('click', 'a', function(event) {
     var user = $(this).text();

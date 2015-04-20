@@ -3,33 +3,47 @@ body {
 	color: #323f4c;
 	font-size: 13px;
 	cursor: pointer;
+	background: #FFFFFF;
 }
 .container-fluid {
 	width: 100%;
 }
-
+#write-message{
+	position: relative;
+	font-size: 12px;
+	color: #38669B;
+}
+#write-message:hover {
+	color: #64ACFC;
+	text-decoration: none;
+}
 #top-bar{
-	background: #38669B;
-	padding: 7px;
-	font-size: 18px;
-	color: #FFFFFF;
+	background: #315779;
+	padding: 7px 0;
+	color: #6CB4F4;
 	margin-bottom: 10px;
 	border-bottom: 1px solid #2E537D;
 }
-
+#home-link {
+	font-size: 15px;
+	padding: 9px;
+}
+#home-link:hover{
+	color: #FFFFFF;
+}
+.button.write{
+	color: #FFFFFF;
+}
 .content {
 	margin: 20px 0 0 0;
 }
-
 #user-feed {
 	display: none;
-	transition: all 3s ease;
 }
 
 #user-feed.transition {
 	display: block;
 }
-
 .tweet, .feed-heading, #update-stream, #back-to-stream {
 	padding: 15px 7px;
 	border-radius: 3px;
@@ -39,8 +53,11 @@ body {
 	margin: 0 0 15px 0;
 }
 #update-stream, #back-to-stream {
-	color: #EF9426;
+	color: #FF9324;
 	font-size: 12px;
+}
+#update-stream:hover, #back-to-stream:hover {
+	color: #FF7A23;
 }
 .feed-heading {
 	margin: 0;
